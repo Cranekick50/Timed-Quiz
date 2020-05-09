@@ -3,6 +3,7 @@ var mainDiv = document.getElementById("main");
 var hsEl = document.getElementById("highScore");
 var timerEl = document.getElementById("timer");
 var buttonEl = document.getElementById("button");
+// var scoreEl = document.
 
 // add timer function to chain questions
 // add end timer function to lose the game if out of time.
@@ -15,5 +16,9 @@ var buttonEl = document.getElementById("button");
 navDiv.style.color = "blue";
 navDiv.style.display = "flex";
 navDiv.style.justifyContent = "space-between";
+navDiv.style.padding = "25px";
 
-mainDiv.style.padding = "50px"
+mainDiv.style.padding = "250px";
+
+
+
