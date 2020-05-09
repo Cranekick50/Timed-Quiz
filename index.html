@@ -2,17 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz</title>
 </head>
-<body>  
-    <nav>High Scores</nav>
-    <h1>JS Quiz Time</h1>
-    <div id="main"></div>
-        <p>This test is to check your skill in Javascript.  You have a limited time to answer questions and wrong answers will deduct time of the clock.</p>
-
+<body> 
+    <nav id="nav">
+        <div id="highScore">High Score</div>
+        <div id="timer">Timer</div>
+    </nav>
+    <div id="main">
+        <h1>JS Quiz Time</h1>
+        <div>
+            <p>This test is to check your skill in Javascript.  You have a limited time to answer questions and wrong answers will deduct time of the clock.</p>
+        </div>
+    </div>
     <script src="./script.js"></script>
     <button>Start!</button>
 </body>
