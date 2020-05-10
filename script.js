@@ -80,16 +80,25 @@ function answerCheck(answer) {
   if (answer === q.correct) {
     alert("correct");
     score++
-    console.log(score)
+
 //correct answer needs to add to score and advance to next question
   }else{
-    secondsLeft=secondsLeft-5
+    alert("wrong");
+    secondsLeft=secondsLeft-5;
 //wrong answer needs to advance to next question.
   }
   runningQuestionIndex++
+  if (runningQuestionIndex >= 3) {
+    var highScore = prompt("Your score is "+score+".  Enter your name." )
+    if (highScore != null) {
+      localStorage.setItem("highScore", JSON.stringify(highScore));
+      console.log(highScore)
+    }
+    clearInterval(timerInterval);
+  }else{
   renderQuestion()
-}
-
+  }
+  
 
 
 function renderQuestion() {
@@ -100,7 +109,8 @@ function renderQuestion() {
     choiceCEl.innerHTML = "<button onClick='answerCheck(C)'>" + q.choiceC + "</button>";
     choiceDEl.innerHTML = "<button onClick='answerCheck(D)'>" + q.choiceD + "</button>";
     } 
-    
+
+
 
 // }
 
@@ -110,14 +120,6 @@ function renderQuestion() {
 // create function to tally score and enter name
 // last page will be the list of top scores after name is submitted.
 // create an end game function if time runs out
-
-
-
-
-
-
-
-
 
 
 
