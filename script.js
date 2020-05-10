@@ -80,6 +80,7 @@ function answerCheck(answer) {
   if (answer === q.correct) {
     alert("correct");
     score++
+
 //correct answer needs to add to score and advance to next question
   }else{
     alert("wrong");
@@ -98,8 +99,6 @@ function answerCheck(answer) {
   renderQuestion()
   }
   
-}
-
 
 
 function renderQuestion() {
