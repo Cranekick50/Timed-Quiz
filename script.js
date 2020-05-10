@@ -5,13 +5,17 @@ var timerEl = document.getElementById("timer");
 var startEl = document.getElementById("button");
 var qTitleEl = document.getElementById("qTitle")
 var answerEl = document.querySelector("answerContainer");
-var secondsLeft = 5;
+var secondsLeft = 60;
 
 var questionEl = document.getElementById("question");
 var choiceAEl = document.getElementById("choiceA")
 var choiceBEl = document.getElementById("choiceB")
 var choiceCEl = document.getElementById("choiceC")
 var choiceDEl = document.getElementById("choiceD")
+var A = "A"
+var B = "B"
+var C = "C"
+var D = "D"
 
 // var scoreEl = document.
 
@@ -57,7 +61,7 @@ function startTimer() {
       timerInterval=setInterval(function () {
       secondsLeft--;
       timerEl.textContent="Time:  " + secondsLeft;
-      if (secondsLeft === 0) {
+      if (secondsLeft <= 0) {
         clearInterval(timerInterval);
         alert("You Failed.");
       }
@@ -69,33 +73,54 @@ function startTimer() {
 // start button function must move to first question and start the timer
 let lastQuestionIndex = questions.length - 1;
 let runningQuestionIndex = 0;
+let score = 0;
+// create function for right and wrong answers. create alert to reveal if right or wrong
+function answerCheck(answer) {
+  let q = questions[runningQuestionIndex]
+  if (answer === q.correct) {
+    alert("correct");
+    score++
+//correct answer needs to add to score and advance to next question
+  }else{
+    alert("wrong");
+    secondsLeft=secondsLeft-5;
+//wrong answer needs to advance to next question.
+  }
+  runningQuestionIndex++
+  if (runningQuestionIndex >= 3) {
+    var highScore = prompt("Your score is "+score+".  Enter your name." )
+    if (highScore != null) {
+      localStorage.setItem("highScore", JSON.stringify(highScore));
+      console.log(highScore)
+    }
+    clearInterval(timerInterval);
+  }else{
+  renderQuestion()
+  }
+  
+}
+
+
 
 function renderQuestion() {
     let q = questions[runningQuestionIndex];
     questionEl.textContent = q.question;
-    choiceAEl.textContent = q.choiceA;
-    choiceBEl.textContent = q.choiceB;
-    choiceCEl.textContent = q.choiceC;
-    choiceDEl.textContent = q.choiceD;
+    choiceAEl.innerHTML = "<button onClick='answerCheck(A)'>" + q.choiceA + "</button>";
+    choiceBEl.innerHTML = "<button onClick='answerCheck(B)'>" + q.choiceB + "</button>";
+    choiceCEl.innerHTML = "<button onClick='answerCheck(C)'>" + q.choiceC + "</button>";
+    choiceDEl.innerHTML = "<button onClick='answerCheck(D)'>" + q.choiceD + "</button>";
     } 
-    
+
+
 
 // }
 
 // add end timer function to lose the game if out of time.
 
-// create function for right and wrong answers. create alert to reveal if right or wrong
+
 // create function to tally score and enter name
 // last page will be the list of top scores after name is submitted.
 // create an end game function if time runs out
-
-
-
-
-
-
-
-
 
 
 
