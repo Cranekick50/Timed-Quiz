@@ -73,10 +73,10 @@ let runningQuestionIndex = 0;
 function renderQuestion() {
     let q = questions[runningQuestionIndex];
     questionEl.textContent = q.question;
-    choiceAEl.textContent = q.choiceA;
-    choiceBEl.textContent = q.choiceB;
-    choiceCEl.textContent = q.choiceC;
-    choiceDEl.textContent = q.choiceD;
+    choiceAEl.innerHTML = "<button>" + q.choiceA + "</button>";
+    choiceBEl.innerHTML = "<button>" + q.choiceB + "</button>";
+    choiceCEl.innerHTML = "<button>" + q.choiceC + "</button>";
+    choiceDEl.innerHTML = "<button>" + q.choiceD + "</button>";
     } 
     
 
