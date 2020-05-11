@@ -1,6 +1,8 @@
 var navDiv = document.getElementById("nav");
 var mainDiv = document.getElementById("main");
 var hsEl = document.getElementById("highScore");
+var hsList = document.querySelector("#hsList");
+
 var timerEl = document.getElementById("timer");
 var startEl = document.getElementById("button");
 var qTitleEl = document.getElementById("qTitle")
@@ -55,6 +57,13 @@ let questions = [
 // add timer function to chain questions
 startEl.addEventListener("click", startTimer);
 
+function topScores(){
+  var link = document.createTextNode("High Scores")
+  hsEl.appendChild(link)
+  hsEl.addEventListener("click", alert("highScore"));
+
+}
+
 function startTimer() {
       startEl.style.display="none";
       qTitleEl.style.display="none";
@@ -75,30 +84,31 @@ let lastQuestionIndex = questions.length - 1;
 let runningQuestionIndex = 0;
 let score = 0;
 // create function for right and wrong answers. create alert to reveal if right or wrong
+
 function answerCheck(answer) {
   let q = questions[runningQuestionIndex]
   if (answer === q.correct) {
     alert("correct");
     score++
-
-//correct answer needs to add to score and advance to next question
   }else{
     alert("wrong");
     secondsLeft=secondsLeft-5;
-//wrong answer needs to advance to next question.
   }
   runningQuestionIndex++
   if (runningQuestionIndex >= 3) {
     var highScore = prompt("Your score is "+score+".  Enter your name." )
     if (highScore != null) {
-      localStorage.setItem("highScore", JSON.stringify(highScore));
+      // localStorage.setItem("highScore", JSON.stringify(highScore));
       console.log(highScore)
+      // var hsText = hsInput.value.trim()+score;
+      // highScore.push(hsText)
+      // hsInput.value = ""+score;
     }
     clearInterval(timerInterval);
   }else{
   renderQuestion()
   }
-  
+}
 
 
 function renderQuestion() {
@@ -111,15 +121,18 @@ function renderQuestion() {
     } 
 
 
+function init() {
+  var storedHS = JSON.parse(localStorage.getItem("highScore"));
 
-// }
+  if (storedHS !== null) {
+    highScore = storedHS;
+  }
 
-// add end timer function to lose the game if out of time.
+  renderHS();
+}
 
-
-// create function to tally score and enter name
-// last page will be the list of top scores after name is submitted.
-// create an end game function if time runs out
-
+function storeHS() {
+  localStorage.setItem("highScore", JSON.stringify(highScore));
+}
 
 
