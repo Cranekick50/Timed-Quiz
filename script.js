@@ -1,6 +1,7 @@
 var navDiv = document.getElementById("nav");
 var mainDiv = document.getElementById("main");
 var hsEl = document.getElementById("highScore");
+var scored = document.getElementById("scoreBox")
 var hsList = document.querySelector("#hsList");
 
 var timerEl = document.getElementById("timer");
@@ -57,12 +58,15 @@ let questions = [
 // add timer function to chain questions
 startEl.addEventListener("click", startTimer);
 
+hsEl.addEventListener("click", topScores)
 function topScores(){
-  var link = document.createTextNode("High Scores")
-  hsEl.appendChild(link)
-  hsEl.addEventListener("click", alert("highScore"));
-
+  // use map to display player highscores
+  let tempPlayer=JSON.parse(localStorage.getItem("playerName"));
+  let tempScore=JSON.parse(localStorage.getItem("tempScore"));
+  scored.innerHTML=`${tempPlayer}: ${tempScore}`;
+  console.log(tempPlayer)
 }
+
 
 function startTimer() {
       startEl.style.display="none";
@@ -82,32 +86,38 @@ function startTimer() {
 // start button function must move to first question and start the timer
 let lastQuestionIndex = questions.length - 1;
 let runningQuestionIndex = 0;
-let score = 0;
+let tempScore = 0;
+let score = []
+let playerName = []
 // create function for right and wrong answers. create alert to reveal if right or wrong
 
 function answerCheck(answer) {
   let q = questions[runningQuestionIndex]
   if (answer === q.correct) {
     alert("correct");
-    score++
+   tempScore++
   }else{
     alert("wrong");
     secondsLeft=secondsLeft-5;
   }
   runningQuestionIndex++
   if (runningQuestionIndex >= 3) {
-    var highScore = prompt("Your score is "+score+".  Enter your name." )
-    if (highScore != null) {
-      // localStorage.setItem("highScore", JSON.stringify(highScore));
-      console.log(highScore)
-      // var hsText = hsInput.value.trim()+score;
-      // highScore.push(hsText)
-      // hsInput.value = ""+score;
+    var nameHS = prompt("Your tempScore is "+tempScore+".  Enter your name." )
+    if (nameHS != null) {
+      playerName.push(nameHS);
+      localStorage.setItem("tempScore", JSON.stringify(tempScore));
+      localStorage.setItem("playerName", JSON.stringify(nameHS));
+      console.log(playerName)
+      console.log(score)
+      // var hsText = hsInput.value.trim() tempScore;
+      // hig tempScore.push(hsText)
+      // hsInput.value = "" tempScore;
     }
     clearInterval(timerInterval);
   }else{
   renderQuestion()
   }
+  
 }
 
 
