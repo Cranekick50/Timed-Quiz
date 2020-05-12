@@ -78,6 +78,7 @@ function topScores(){
 function startTimer() {
       startEl.style.display="none";
       qTitleEl.style.display="none";
+      tempScore = 0;
       timerInterval=setInterval(function () {
       secondsLeft--;
       timerEl.textContent="Time:  " + secondsLeft;
@@ -117,7 +118,8 @@ function answerCheck(answer) {
     choiceDEl.innerHTML = null;
     secondsLeft = 60
     startEl.style.display = "block";
-    runningQuestionsIndex = null;
+    runningQuestionIndex = 0;
+    
     
 
     if (nameHS != null) {
