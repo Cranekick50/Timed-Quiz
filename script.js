@@ -85,6 +85,14 @@ function startTimer() {
       if (secondsLeft <= 0) {
         clearInterval(timerInterval);
         alert("You Failed.");
+        questionEl.textContent = "Replay?";
+        choiceAEl.innerHTML = null;
+        choiceBEl.innerHTML = null;
+        choiceCEl.innerHTML = null;
+        choiceDEl.innerHTML = null;
+        secondsLeft = 60
+        startEl.style.display = "block";
+        runningQuestionIndex = 0;
       }
     }, 1000);
     
@@ -143,12 +151,14 @@ function answerCheck(answer) {
 
 function renderQuestion() {
     let q = questions[runningQuestionIndex];
+    questionEl.style.fontSize = "40px";
     questionEl.textContent = q.question;
     choiceAEl.innerHTML = "<button onClick='answerCheck(A)'>" + q.choiceA + "</button>";
     choiceBEl.innerHTML = "<button onClick='answerCheck(B)'>" + q.choiceB + "</button>";
     choiceCEl.innerHTML = "<button onClick='answerCheck(C)'>" + q.choiceC + "</button>";
     choiceDEl.innerHTML = "<button onClick='answerCheck(D)'>" + q.choiceD + "</button>";
     } 
+
 
 
 
