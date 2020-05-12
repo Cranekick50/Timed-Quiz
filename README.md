@@ -1,5 +1,10 @@
 # Timed-Quiz
 
+Click on the Start! button to begin.
+You have 60 seconds to complete the quiz.
+Any wrong answer will deducte 5 seconds off the clock.
+At the end of the quiz, you receive a prompt to enter your name, along with your score.
+Click on High Score to see your score.
 
 
-Create a timed quiz with the following features: Timer that loses time when a question is answered wrong. Answering question, prompts move to next question. Quiz finishes if all questions are answered or timer runs out. Then save name for a high score. Update HTML and CSS using JS.
+

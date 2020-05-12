@@ -6,6 +6,7 @@ var hsList = document.querySelector("#hsList");
 
 var timerEl = document.getElementById("timer");
 var startEl = document.getElementById("button");
+var restEl = document.getElementById("restButton")
 var qTitleEl = document.getElementById("qTitle")
 var answerEl = document.querySelector("answerContainer");
 var secondsLeft = 60;
@@ -63,8 +64,14 @@ function topScores(){
   // use map to display player highscores
   let tempPlayer=JSON.parse(localStorage.getItem("playerName"));
   let tempScore=JSON.parse(localStorage.getItem("tempScore"));
+  // let result = tempScore.reduce(function(result, field, index) {
+  //   result[tempPlayer[index]] = field;
+  //   return result;
+  // }, {})
+
+  
   scored.innerHTML=`${tempPlayer}: ${tempScore}`;
-  console.log(tempPlayer)
+  console.log(playerName.length)
 }
 
 
@@ -101,10 +108,21 @@ function answerCheck(answer) {
     secondsLeft=secondsLeft-5;
   }
   runningQuestionIndex++
-  if (runningQuestionIndex >= 3) {
-    var nameHS = prompt("Your tempScore is "+tempScore+".  Enter your name." )
+  if (runningQuestionIndex >= questions.length) {
+    var nameHS = prompt("Your score is "+tempScore+".  Enter your name." )
+    questionEl.textContent = "Replay?";
+    choiceAEl.innerHTML = null;
+    choiceBEl.innerHTML = null;
+    choiceCEl.innerHTML = null;
+    choiceDEl.innerHTML = null;
+    secondsLeft = 60
+    startEl.style.display = "block";
+    runningQuestionsIndex = null;
+    
+
     if (nameHS != null) {
       playerName.push(nameHS);
+      score.push(tempScore);
       localStorage.setItem("tempScore", JSON.stringify(tempScore));
       localStorage.setItem("playerName", JSON.stringify(nameHS));
       console.log(playerName)
@@ -131,18 +149,10 @@ function renderQuestion() {
     } 
 
 
-function init() {
-  var storedHS = JSON.parse(localStorage.getItem("highScore"));
 
-  if (storedHS !== null) {
-    highScore = storedHS;
-  }
 
-  renderHS();
-}
 
-function storeHS() {
-  localStorage.setItem("highScore", JSON.stringify(highScore));
-}
+
+
 
 
